@@ -1,0 +1,34 @@
+createAccount <- function(customerName, initialBalance = 0){
+  account <- list(
+    name = customerName,
+    balance = initialBalance
+  )
+  return(account)
+}
+
+deposit <- function(account, amount) {
+  if (amount > 0) {
+    account$balance <- account$balance + amount
+    cat("Deposit successful. New balance:", account$balance, "\n")
+  } else {
+    cat("Invalid deposit amount. Please enter a positive amount.\n")
+  }
+}
+
+withdraw <- function(account, amount) {
+  if (amount > 0 && amount <= account$balance) {
+    account$balance <- account$balance - amount
+    cat("Withdrawal successful. New balance:", account$balance, "\n")
+  } else if (amount <= 0) {
+    cat("Invalid withdrawal amount. Please enter a positive amount.\n")
+  } else {
+    cat("Insufficient funds. Withdrawal not allowed.\n")
+  }
+}
+
+customerAccount <- createAccount("tanya", 1000)
+print(customerAccount)
+
+deposit(customerAccount, 100)
+withdraw(customerAccount, 400)
+withdraw(customerAccount, 500)
